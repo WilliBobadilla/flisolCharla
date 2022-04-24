@@ -7,7 +7,6 @@
 # https://questionpro.com/t/AVUojZsRRm
 
 from time import sleep
-from urllib import response
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.by import By
@@ -22,12 +21,12 @@ with open('respuestas.txt', 'r') as fil:
     print(responses)
 
 
-YOUTUBE_LINK = "https://questionpro.com/t/AVUojZsRRm"
+FORM_LINK = "https://questionpro.com/t/AVUojZsRRm"
 
 driver = webdriver.Firefox(executable_path="./geckodriver")
-driver.get(YOUTUBE_LINK)
+driver.get(FORM_LINK)
 
-#wait for load this element
+#wait loading of this element
 WebDriverWait(driver, 30).until(
 	EC.presence_of_element_located((By.ID,"legend_107791229"))
 )
@@ -40,6 +39,7 @@ question_one.click()
 sleep(1)
 #elegimos un texto random 
 text_random = responses[randint(0,len(responses)-1)]
+print("Texto aleatorio elegido: ", text_random)
 question_two = driver.find_element(By.XPATH,"//*[@id='578809235ID']")
 question_two.send_keys(text_random)
 sleep(1)
